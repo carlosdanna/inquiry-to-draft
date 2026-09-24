@@ -9,6 +9,7 @@ import {
   CreateProposalInputSchema,
   ListCompaniesResponseSchema,
   ListContentResponseSchema,
+  ListTemplatesResponseSchema,
   ProposalMutationResponseSchema,
   ProposalSearchResponseSchema,
   type BulkArchiveResult,
@@ -19,6 +20,7 @@ import {
   type CreateProposalInput,
   type CreatedProposal,
   type ProposalSearchResult,
+  type ProposalTemplate,
 } from "./schemas";
 
 export { ProposalesError, isProposalesError } from "./errors";
@@ -29,12 +31,23 @@ export type {
   CreateProposalInput,
   CreatedProposal,
   ProposalSearchResult,
+  ProposalTemplate,
 } from "./schemas";
 
 export async function listCompanies(): Promise<Company[]> {
   const response = await proposalesFetch("/v3/companies", {
     schema: ListCompaniesResponseSchema,
   });
+  return response.data;
+}
+
+export async function listCompanyTemplates(
+  companyId: number,
+): Promise<ProposalTemplate[]> {
+  const response = await proposalesFetch(
+    `/v3/companies/${companyId}/templates`,
+    { schema: ListTemplatesResponseSchema },
+  );
   return response.data;
 }
 

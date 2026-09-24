@@ -171,6 +171,11 @@ export function formatPriceSek(item: CatalogItem): string {
   return `${kronorFormat.format(item.priceSek)} SEK ${item.unit}`;
 }
 
+// Proposales stores money in the smallest currency unit (öre for kronor).
+export function priceInCents(item: CatalogItem): number {
+  return Math.round(item.priceSek * 100);
+}
+
 // The description stored in Proposales, with the price appended.
 export function catalogDescription(item: CatalogItem): string {
   return `${item.description}\n\nPrice: ${formatPriceSek(item)}.`;
