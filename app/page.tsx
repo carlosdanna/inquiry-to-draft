@@ -1,3 +1,4 @@
+import { ContentCount } from "@/components/content-count";
 import {
   Card,
   CardContent,
@@ -17,6 +18,7 @@ export default function Home() {
           Paste a customer inquiry email and turn it into a draft proposal in
           Proposales.
         </p>
+        <ContentCount />
       </header>
 
       <Card>
